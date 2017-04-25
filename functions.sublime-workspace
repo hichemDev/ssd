@@ -1,0 +1,270 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"eho",
+				"echo\techo \"…\""
+			],
+			[
+				"user",
+				"user_id"
+			],
+			[
+				"heder",
+				"header"
+			],
+			[
+				"con",
+				"conn"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"in",
+				"info_nom"
+			],
+			[
+				"ima",
+				"image2"
+			],
+			[
+				"image",
+				"image1"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 81.0,
+		"last_filter": "php",
+		"selected_items":
+		[
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Ph",
+				"Set Syntax: PHP"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 432.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/wamp/www/cts.dz/wp-content/themes/cts/index.php",
+		"/F/confirmation/presentation hichem.pptx",
+		"/C/wamp/www/SSD/wp-config.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/commande/doc/pdf_proformat.modules.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/facture/doc/pdf_crabe.modules.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/commande/doc/pdf_proforma.modules.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/commande/doc/pdf_einstein.modules.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/commande/mod_commande_marbre.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/commande/modules_commande.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/commande/mod_commande_saphir.php",
+		"/C/wamp/www/cts.dz/wp-content/themes/cts/inscription.php",
+		"/C/wamp/www/testimportfichier/php/envoie.php",
+		"/C/wamp/www/testimportfichier/php/reception.php",
+		"/C/wamp/www/cts.dz/wp-content/themes/cts/functions.php",
+		"/C/wamp/www/cts.dz/wp-content/themes/cts/dash_author.php",
+		"/C/wamp/www/cts.dz/wp-content/themes/cts/footer.php",
+		"/C/wamp/www/testimportfichier/index.html",
+		"/C/wamp/www/testimportfichier/php/src/database.php",
+		"/C/wamp/www/dolibarr_hichem/htdocs/core/modules/commande/doc/doc_generic_order_odt.modules.php",
+		"/C/wamp/www/testimportfichier/php/src/class.uploader.php",
+		"/F/dolibarr-5.0.1/README.md",
+		"/C/dolibarr/www/dolibarr/htdocs/conf/conf.php",
+		"/C/dolibarr/apps/phpmyadmin4.1.14/config.inc.php",
+		"/C/wamp/www/cts.dz/wp-content/themes/cts/formations.php",
+		"/C/wamp/www/cts.dz/wp-content/themes/cts/degp.php",
+		"/F/cts.dz/wp-content/plugins/Zero_newsletter/zero.php",
+		"/F/cts.dz/wp-content/plugins/Zero_newsletter/newsletterwidget.php",
+		"/F/cts.dz/wp-content/plugins/Zero_newsletter/pagetitle.php",
+		"/F/cts.dz/wp-content/plugins/Zero_newsletter/newsletter.php",
+		"/F/cts.dz/wp-content/plugins/newsletter/newsletter.php",
+		"/C/Users/Hichem/AppData/Local/Temp/Temp1_jQuery.filer-1.3.0.zip/jQuery.filer-1.3.0/php/class.uploader.php",
+		"/C/Users/Hichem/Desktop/testimportfichier/css/jquery.filer.css",
+		"/C/Users/Hichem/Desktop/testimportfichier/test jquery.html",
+		"/C/Users/Hichem/Desktop/testimportfichier/envoie.php",
+		"/C/Users/Hichem/Desktop/test jquery.html",
+		"/F/test jquery.html"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dropdown1",
+			"profile",
+			"\t\t      \">",
+			"mailog",
+			"Einstein",
+			"einstein",
+			"Einstein",
+			"einstein",
+			"eins",
+			"user",
+			"myInput",
+			"myinput",
+			"field",
+			"field list",
+			"evername",
+			"cache_data",
+			"date",
+			"email",
+			"lastname",
+			"firstname",
+			"upload",
+			"isComplete"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "functions.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 106.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

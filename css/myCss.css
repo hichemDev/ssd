@@ -98,7 +98,7 @@ left:0;
 }
 p{
     font-family: 'Montserrat', sans-serif;
-     color: #fff;
+     
 }
 
 p.first{
@@ -1531,13 +1531,25 @@ tbody tr td button.btn.bda{
     margin-top: -3px;
 }
 
-.newsletter input.tnp-email[placeholder]{
+.newsletter input.tnp-email[placeholder]
+{
 
 color:#fff;
 
 }
 
+ul.right{
 
+    float:right;
+}
+
+.navbar-header
+{width: 50%;
+    display: inline-block;}
+
+    .number{
+    color:red;    
+    }
 
 /*media query*/
 
