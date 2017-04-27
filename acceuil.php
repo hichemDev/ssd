@@ -20,23 +20,56 @@ Template Name: Acceuil
 </ul>
 <div class="tab-content" id="myTabContent"> 
 <div class="tab-pane fade in active" role="tabpanel" id="home" aria-labelledby="home-tab"> 
-     <h3> list Des ventes</h3>
+     <!-- <h3> list Des ventes</h3> -->
     <div class="panel panel-default"> <div class="panel-heading">
-    <section class="title">Panel heading</section>
-    <section class="number right">23</section>
+    <section class="title">List Des ventes Quotidiennes</section>
+    <section class="number right badge">Nombre des ventes 23</section>
     
     </div> 
-    <div class="panel-body"> <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> </div> <table class="table"> <thead> <tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr> <tr> <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr> <tr> <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody> </table> </div>
+    <div class="panel-body"> <p> </p> </div>
+     <table class="table"> <thead> <tr> <th>N° de Commande</th> <th>Client</th> <th>Produit</th> <th>Prix</th><th>Date</th> </tr> 
+     </thead> 
+     <tbody> 
+     <tr> <th scope="row">13452</th>
+      <td>Mark zukerberg</td> 
+      <td>GaLaxy S46</td> 
+      <td>9900.00</td><td>12-04-2019</td> </tr> 
+      
+        </tbody> </table> </div>
+<button id="print" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Imprimerl'état</button>
+<iframe id="fichierpdf" src="<?php echo get_stylesheet_directory_uri(); ?>
+/etat.html" name="fichierpdf" type="application/pdf" style="display: none;"></iframe>
 
 
 </div> 
-<div class="tab-pane fade" role="tabpanel" id="produit" aria-labelledby="produit-tab"> <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p> </div> <div class="tab-pane fade" role="tabpanel" id="vente" aria-labelledby="vente-tab"> <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p> </div>  
+<div class="tab-pane fade" role="tabpanel" id="produit" aria-labelledby="produit-tab"> <div class="panel panel-default"> <div class="panel-heading">
+    <section class="title">List Des produits</section>
+    <section class="number right badge">Nombre de produits 243</section>
+    
+    </div> 
+    <div class="panel-body"> <button type="button" id="ajoutProduit" class="btn btn-default right" aria-label="Right Align" >
+  <i class="fa fa-plus-circle left" style="font-size: 20px" aria-hidden="true"></i> Ajouter Produit 
+
+</button> </div>
+     <table  class="table"> <thead> <tr> <th>Nom du Produit </th> <th>Largeur(m²)</th> <th>Longeur(m²)</th> <th>Prix</th> </tr> 
+     </thead> 
+     <tbody id="table"> 
+     <tr> <th scope="row">Galaxy</th>
+      <td>2.5</td> 
+      <td>3.8</td> 
+      <td>9900.00</td> </tr> 
+      
+        </tbody> </table> </div>
+        <button id="sendAjax" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer produit</button>
+
+ </div> 
+ <div class="tab-pane fade" role="tabpanel" id="vente" aria-labelledby="vente-tab"> <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p> </div>  
 </div>
 
-  <button  class="btn btn-lg"><a style="color:white" href="<?php echo wp_logout_url(); ?>">Déconnexion</a></button>  
-
-    </div>
+  <button  class="btn btn-lg"><a style="color:white;display:inline;" href="<?php echo wp_logout_url(); ?>">Déconnexion</a></button>  
+      </div>
       
   </section>
 </div>
- 		
+
+ 		<?php get_footer(); ?>

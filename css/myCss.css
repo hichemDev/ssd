@@ -1538,19 +1538,34 @@ color:#fff;
 
 }
 
-ul.right{
+.right{
 
     float:right;
+}
+.left{
+    float:left;
 }
 
 .navbar-header
 {width: 50%;
-    display: inline-block;}
+    display: inline-block;
+}
 
-    .number{
+.number {
     color:red;    
-    }
+}
+.panel-heading .title{
+    display: inline-block;
+}
 
+.panel-default>.panel-heading .badge{
+ display:inline-block!important;
+ }
+
+header{
+margin-bottom: 70px ;
+
+}
 /*media query*/
 
 
