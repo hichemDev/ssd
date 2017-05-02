@@ -13,7 +13,9 @@ Template Name: Acceuil
 <ul class="nav nav-tabs" id="myTabs" role="tablist"> 
 <li role="presentation" class="active">
 <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Accueil</a>
-</li> 
+</li>
+<li role="presentation"><a href="#client" role="tab" id="client-tab" data-toggle="tab" aria-controls="client">Client</a></li>
+
 <li role="presentation"><a href="#produit" role="tab" id="produit-tab" data-toggle="tab" aria-controls="produit">Produit</a></li>
 
 <li role="presentation"><a href="#vente" role="tab" id="vente-tab" data-toggle="tab" aria-controls="vente">Vente</a></li>
@@ -40,8 +42,45 @@ Template Name: Acceuil
 <iframe id="fichierpdf" src="<?php echo get_stylesheet_directory_uri(); ?>
 /etat.html" name="fichierpdf" type="application/pdf" style="display: none;"></iframe>
 
+<iframe id="otPdf" src="<?php echo get_stylesheet_directory_uri(); ?>
+/etat.html" name="otPdf" type="application/pdf" style="display: none;"></iframe>
 
 </div> 
+
+<div class="tab-pane fade" role="tabpanel" id="client" aria-labelledby="client-tab"> <div class="panel panel-default"> <div class="panel-heading">
+    <section class="title">List Des clients</section>
+    <section class="number right badge">Nombre de clients 243</section>
+    
+    </div> 
+    <div class="panel-body"> <button type="button" id="ajoutclient" class="btn btn-default right" aria-label="Right Align" >
+  <i class="fa fa-plus-circle left" style="font-size: 20px" aria-hidden="true"></i> Ajouter client 
+
+</button> </div>
+     <table  class="table"> <thead> <tr> <th>Nom  </th> <th>Prénom</th> <th>Numéro de télephone</th>  </tr> 
+     </thead> 
+     <tbody id="table"> 
+     <tr> <th scope="row">Abdi</th>
+      <td>Hichem</td> 
+      <td>056432312</td> 
+       </tr> 
+
+       <?php 
+       $results=$wpdb->get_results( "SELECT * FROM wp_ssd_client   ", ARRAY_A);
+       foreach ($results as $result ) {
+        ?> 
+       <tr> <th scope="row"><?php echo $result["nom"]; ?></th>
+      <td><?php echo $result["prenom"]; ?></td> 
+      <td> 0<?php echo $result["numero telephone"]; ?></td> 
+       </tr>
+        
+      <?php
+        }
+        ?>
+        </tbody> </table> </div>
+        <button id="sendAjaxClient" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer Client</button>
+
+ </div> 
+
 <div class="tab-pane fade" role="tabpanel" id="produit" aria-labelledby="produit-tab"> <div class="panel panel-default"> <div class="panel-heading">
     <section class="title">List Des produits</section>
     <section class="number right badge">Nombre de produits 243</section>
@@ -63,8 +102,42 @@ Template Name: Acceuil
         <button id="sendAjax" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer produit</button>
 
  </div> 
- <div class="tab-pane fade" role="tabpanel" id="vente" aria-labelledby="vente-tab"> <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p> </div>  
-</div>
+
+
+<div class="tab-pane fade" role="tabpanel" id="vente" aria-labelledby="vente-tab"> <div class="panel panel-default"> <div class="panel-heading">
+    <section class="title">List Des ventes</section>
+    <section class="number right badge">Nombre de Commande 243</section>
+    
+    </div> 
+    <div id="ot" class="panel-body"> <button type="button" id="ajoutVente" class="btn btn-default right" aria-label="Right Align" >
+  <i class="fa fa-plus-circle left" style="font-size: 20px" aria-hidden="true"></i> Ajouter commande 
+
+</button> </div>
+     <table id="tableVente" class="table"> <thead> <tr> <th>Nom du Produit </th><th>Nom du Client</th> <th>Largeur(m²)</th> <th>Longeur(m²)</th> <th>Prix</th> <th></th></tr> 
+     </thead> 
+     <tbody id="table"> 
+     <tr> <th scope="row">Galaxy</th>
+     <th>Client</th>
+      <td>2.5</td> 
+      <td>3.8</td> 
+      <td>9900.00</td> 
+      <td class="hover" id="pop" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 18px;"></i>
+      <div id="options">
+        <i class="fa fa-times" aria-hidden="true" style="color:#96281b" style="font-size: 18px;"></i>
+         <i class="fa fa-pencil" aria-hidden="true" style="color:#26A65B;font-size: 18px;"></i> 
+         <i class="fa fa-clipboard" aria-hidden="true" style="color:#F7CA18;font-size: 18px;;"></i>
+
+
+      </div></td> </tr> 
+      
+        </tbody> </table> </div>
+        <button id="sendCommend" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer vente</button>
+
+ </div> 
+
+ </div> 
+  
+
 
   <button  class="btn btn-lg"><a style="color:white;display:inline;" href="<?php echo wp_logout_url(); ?>">Déconnexion</a></button>  
       </div>

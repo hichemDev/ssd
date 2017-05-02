@@ -1566,6 +1566,17 @@ header{
 margin-bottom: 70px ;
 
 }
+
+
+#options{
+    display: none;
+    -webkit-transition: display 2s; /* Safari */
+    transition: display 2s;
+}
+td.hover:hover div#options{
+display:block;
+
+}
 /*media query*/
 
 

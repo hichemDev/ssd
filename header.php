@@ -1,8 +1,11 @@
+
  <!DOCTYPE html>
 <html lang="Fr">
 <head>
+
 	<meta charset="UTF-8">
 	<title><?php  wp_title(); ?> </title>
+	<?php wp_head(); ?>
 	<!-- personnal links -->
 
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/myCss.css">
