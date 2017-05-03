@@ -27,7 +27,8 @@ add_action('wp_logout', 'hich_logout_redirect');
 
 
 function add_js_scripts() {
-	wp_enqueue_script( 'scriptProduit', get_stylesheet_directory_uri().'/js/scriptProduit.js', array('jquery'), '1.1', true );
+  wp_enqueue_script( 'scriptBoot', get_stylesheet_directory_uri().'/js/bootstrap.min.js', array('jquery',), '1.1', true );
+	wp_enqueue_script( 'scriptProduit', get_stylesheet_directory_uri().'/js/scriptProduit.js', array('jquery',), '1.1', true );
 	
     wp_enqueue_script( 'scriptClient', get_stylesheet_directory_uri().'/js/scriptClient.js', array('jquery'), '1.0', true );
 	// pass Ajax Url to script.js
@@ -72,6 +73,7 @@ if (isset($_POST["nom"])) {
     # code...
     $clientNom=$_POST["nom"];
     $clientPrenom=$_POST["prenom"];
+    $clientReference= md5($clientNom.$clientPrenom,false);
          $clientNumero="0".$_POST["numero"];
          
         global $wpdb;
@@ -86,7 +88,7 @@ if (isset($_POST["nom"])) {
     
                 'nom' => $clientNom,
                 'prenom' => $clientPrenom,
-
+                  'reference'=> $clientReference,
         'numero telephone' => $clientNumero
              ) );
 
@@ -99,7 +101,7 @@ if (isset($_POST["nom"])) {
 
 }else{
 
-    echo "walou";
+    echo "Ca ne marche pas";
 }
     die();
 }

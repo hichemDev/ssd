@@ -49,7 +49,27 @@ Template Name: Acceuil
 
 <div class="tab-pane fade" role="tabpanel" id="client" aria-labelledby="client-tab"> <div class="panel panel-default"> <div class="panel-heading">
     <section class="title">List Des clients</section>
-    <section class="number right badge">Nombre de clients 243</section>
+    <?php 
+      $page = (!empty($_GET['cpage']) ? $_GET['cpage'] : 1);
+      $items_per_page = 1;
+      $limite = 8;
+      $offset = ( $page * $limite ) -($limite);
+      $query=" SELECT * FROM wp_ssd_client ORDER BY id DESC LIMIT $offset, $limite ";
+
+                    //$total_query = ' "SELECT COUNT(1) FROM (${query}) ' ; 
+                  // $total = $wpdb->get_var(  $query );  
+              
+              
+                        $wpdb->show_errors();
+                        $results = $wpdb->get_results( $query , ARRAY_A);
+                        $total = $wpdb->get_var( " SELECT COUNT(1) FROM wp_ssd_client ");
+
+
+       //$results=$wpdb->get_results( "SELECT * FROM wp_ssd_client   ", ARRAY_A);
+       $numbreClient= sizeof($results);
+
+     ?>
+    <section class="number right badge">Nombre de clients <?php echo $numbreClient; ?></section>
     
     </div> 
     <div class="panel-body"> <button type="button" id="ajoutclient" class="btn btn-default right" aria-label="Right Align" >
@@ -65,7 +85,6 @@ Template Name: Acceuil
        </tr> 
 
        <?php 
-       $results=$wpdb->get_results( "SELECT * FROM wp_ssd_client   ", ARRAY_A);
        foreach ($results as $result ) {
         ?> 
        <tr> <th scope="row"><?php echo $result["nom"]; ?></th>
@@ -76,7 +95,24 @@ Template Name: Acceuil
       <?php
         }
         ?>
-        </tbody> </table> </div>
+        </tbody> </table> 
+        <nav>
+
+             <center><?php
+
+                echo '<div class="pagination">';
+                echo paginate_links( array(
+                'base' => add_query_arg( 'cpage', '%#%' ),
+                'format' => '',
+                'prev_text' => __('&laquo;'),
+                'next_text' => __('&raquo;'),
+                'total' => ceil($total / $limite),
+                'current' => $page
+                
+                ));
+                echo '</div>';             ?></center>
+                </nav>
+        </div>
         <button id="sendAjaxClient" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer Client</button>
 
  </div> 
