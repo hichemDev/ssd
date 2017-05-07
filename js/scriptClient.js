@@ -27,8 +27,8 @@ data:{action:"sendPhpClient",
 cache: false,
 success: function(response) {
 alert(response);
-window.location.reload();
-$('#myTabs a[href="#client"]').tab('show');
+//window.location.reload();
+//$('#myTabs a[href="#client"]').tab('show');
 //$('#client').tab('show');
 }
 });	

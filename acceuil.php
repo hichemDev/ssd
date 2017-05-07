@@ -18,7 +18,7 @@ Template Name: Acceuil
 
 <li role="presentation"><a href="#produit" role="tab" id="produit-tab" data-toggle="tab" aria-controls="produit">Produit</a></li>
 
-<li role="presentation"><a href="#vente" role="tab" id="vente-tab" data-toggle="tab" aria-controls="vente">Vente</a></li>
+<li role="presentation"><a href="#vente" role="tab" id="vente-tab" data-toggle="tab" aria-controls="vente">Proformat</a></li>
 </ul>
 <div class="tab-content" id="myTabContent"> 
 <div class="tab-pane fade in active" role="tabpanel" id="home" aria-labelledby="home-tab"> 
@@ -50,22 +50,22 @@ Template Name: Acceuil
 <div class="tab-pane fade" role="tabpanel" id="client" aria-labelledby="client-tab"> <div class="panel panel-default"> <div class="panel-heading">
     <section class="title">List Des clients</section>
     <?php 
-      $page = (!empty($_GET['cpage']) ? $_GET['cpage'] : 1);
-      $items_per_page = 1;
-      $limite = 8;
-      $offset = ( $page * $limite ) -($limite);
-      $query=" SELECT * FROM wp_ssd_client ORDER BY id DESC LIMIT $offset, $limite ";
+      //$page = (!empty($_GET['cpage']) ? $_GET['cpage'] : 1);
+      //$items_per_page = 1;
+      //$limite = 8;
+      //$offset = ( $page * $limite ) -($limite);
+      //$query=" SELECT * FROM wp_ssd_client ORDER BY id DESC LIMIT $offset, $limite ";
 
                     //$total_query = ' "SELECT COUNT(1) FROM (${query}) ' ; 
                   // $total = $wpdb->get_var(  $query );  
               
               
-                        $wpdb->show_errors();
-                        $results = $wpdb->get_results( $query , ARRAY_A);
-                        $total = $wpdb->get_var( " SELECT COUNT(1) FROM wp_ssd_client ");
+        //                $wpdb->show_errors();
+          //              $results = $wpdb->get_results( $query , ARRAY_A);
+            //            $total = $wpdb->get_var( " SELECT COUNT(1) FROM wp_ssd_client ");
 
 
-       //$results=$wpdb->get_results( "SELECT * FROM wp_ssd_client   ", ARRAY_A);
+       $results=$wpdb->get_results( "SELECT * FROM wp_ssd_client   ", ARRAY_A);
        $numbreClient= sizeof($results);
 
      ?>
@@ -96,22 +96,19 @@ Template Name: Acceuil
         }
         ?>
         </tbody> </table> 
-        <nav>
-
-             <center><?php
-
-                echo '<div class="pagination">';
-                echo paginate_links( array(
-                'base' => add_query_arg( 'cpage', '%#%' ),
-                'format' => '',
-                'prev_text' => __('&laquo;'),
-                'next_text' => __('&raquo;'),
-                'total' => ceil($total / $limite),
-                'current' => $page
+        <?php
+                //echo '<nav> <center>';
+                //echo '<div class="pagination">';
+                //echo paginate_links( array(
+                //'base' => add_query_arg( 'cpage', '%#%' ),
+                //'format' => '',
+                //'prev_text' => __('&laquo;'),
+                //'next_text' => __('&raquo;'),
+                //'total' => ceil($total / $limite),
+                //'current' => $page
                 
-                ));
-                echo '</div>';             ?></center>
-                </nav>
+                //));
+                //echo '</div>  </center> </nav>';             ?> 
         </div>
         <button id="sendAjaxClient" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer Client</button>
 
@@ -119,41 +116,57 @@ Template Name: Acceuil
 
 <div class="tab-pane fade" role="tabpanel" id="produit" aria-labelledby="produit-tab"> <div class="panel panel-default"> <div class="panel-heading">
     <section class="title">List Des produits</section>
-    <section class="number right badge">Nombre de produits 243</section>
+    <?php $resultProduits=$wpdb->get_results( "SELECT * FROM wp_ssd_produit   ", ARRAY_A);
+       $numbreProduit= sizeof($resultProduits); ?>
+    <section class="number right badge">Nombre de produits <?php echo $numbreProduit; ?></section>
     
     </div> 
     <div class="panel-body"> <button type="button" id="ajoutProduit" class="btn btn-default right" aria-label="Right Align" >
   <i class="fa fa-plus-circle left" style="font-size: 20px" aria-hidden="true"></i> Ajouter Produit 
 
 </button> </div>
-     <table  class="table"> <thead> <tr> <th>Nom du Produit </th> <th>Largeur(m²)</th> <th>Longeur(m²)</th> <th>Prix</th> </tr> 
+     <table  class="table"> <thead> <tr> <th>Nom du Produit </th> <th>Reference</th> <th>Prix d'achat</th> <th>Prix de vente</th> </tr> 
      </thead> 
-     <tbody id="table"> 
+     <tbody id="tableProduit"> 
      <tr> <th scope="row">Galaxy</th>
       <td>2.5</td> 
       <td>3.8</td> 
       <td>9900.00</td> </tr> 
-      
+       <?php 
+       foreach ($resultProduits as $resultProduit ) {
+        ?> 
+       <tr> <th scope="row"><?php echo $resultProduit ["nom"]; ?></th>
+      <td><?php echo $resultProduit ["reference"]; ?></td> 
+      <td><?php echo $resultProduit ["prix_chat"]; ?></td> 
+      <td><?php echo $resultProduit ["prix_vente"]; ?></td> 
+       </tr>
+        
+      <?php
+        }
+        ?>
+
         </tbody> </table> </div>
-        <button id="sendAjax" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer produit</button>
+        <button id="sendAjax" class="btn btn-lg" style="display:inline;color:white;float: right;">Enregistrer produit</button>
 
  </div> 
 
 
 <div class="tab-pane fade" role="tabpanel" id="vente" aria-labelledby="vente-tab"> <div class="panel panel-default"> <div class="panel-heading">
-    <section class="title">List Des ventes</section>
-    <section class="number right badge">Nombre de Commande 243</section>
+    <section class="title"></section>
+    <section class="number right badge"></section>
     
     </div> 
-    <div id="ot" class="panel-body"> <button type="button" id="ajoutVente" class="btn btn-default right" aria-label="Right Align" >
-  <i class="fa fa-plus-circle left" style="font-size: 20px" aria-hidden="true"></i> Ajouter commande 
+    <div id="ot" class="panel-body"> <button type="button" id="ajoutProformat" class="btn btn-default right" aria-label="Right Align" >
+  <i class="fa fa-plus-circle left" style="font-size: 20px" aria-hidden="true"></i> Creer une facture Proformat 
 
 </button> </div>
-     <table id="tableVente" class="table"> <thead> <tr> <th>Nom du Produit </th><th>Nom du Client</th> <th>Largeur(m²)</th> <th>Longeur(m²)</th> <th>Prix</th> <th></th></tr> 
+     <table id="tableProformat" class="table"> <thead> <tr> <th>Nom du Produit </th><th>Nom du Client</th> <th>Epaisseur
+</th> <th>Largeur(m²)</th> <th>Longeur(m²)</th> <th>Prix</th>  <th></th></tr> 
      </thead> 
      <tbody id="table"> 
      <tr> <th scope="row">Galaxy</th>
      <th>Client</th>
+     <td> 2</td>
       <td>2.5</td> 
       <td>3.8</td> 
       <td>9900.00</td> 
@@ -167,7 +180,7 @@ Template Name: Acceuil
       </div></td> </tr> 
       
         </tbody> </table> </div>
-        <button id="sendCommend" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Enregistrer vente</button>
+        <button id="" class="btn btn-lg" style="display:inline;color:white;float: right;"  >Passer la Vente</button>
 
  </div> 
 
@@ -175,7 +188,7 @@ Template Name: Acceuil
   
 
 
-  <button  class="btn btn-lg"><a style="color:white;display:inline;" href="<?php echo wp_logout_url(); ?>">Déconnexion</a></button>  
+  <button  class="btn btn-lg"><a style="color:white;display:inline;" href="<?php ?>">Imprimer la facture proformat </a></button>  
       </div>
       
   </section>

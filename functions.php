@@ -27,13 +27,15 @@ add_action('wp_logout', 'hich_logout_redirect');
 
 
 function add_js_scripts() {
-  wp_enqueue_script( 'scriptBoot', get_stylesheet_directory_uri().'/js/bootstrap.min.js', array('jquery',), '1.1', true );
+  
 	wp_enqueue_script( 'scriptProduit', get_stylesheet_directory_uri().'/js/scriptProduit.js', array('jquery',), '1.1', true );
 	
     wp_enqueue_script( 'scriptClient', get_stylesheet_directory_uri().'/js/scriptClient.js', array('jquery'), '1.0', true );
+     wp_enqueue_script( 'showHint', get_stylesheet_directory_uri().'/js/showhint.js', array('jquery'), '1.0', true );
 	// pass Ajax Url to script.js
 	wp_localize_script('scriptProduit', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
     wp_localize_script('scriptClient', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+    wp_localize_script('showHint', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
 }
 
 
@@ -42,28 +44,35 @@ function sendPhpProduit(){
 if (isset($_POST["nom"])) {
     # code...
     $produitNom=$_POST["nom"];
-         $produitLargeur=$_POST["largeur"];
-         $produitLongeur=$_POST["longeur"];
-         $produitPrix=$_POST["prix"];
+    $produitReference=  md5($produitNom,false);
+    $produitPrixAchat=$_POST["prixAchat"];
+    $produitPrixVente=$_POST["prixVente"];
+         
         global $wpdb;
 //        $wpdb->show_errors()
         $produitTab =  'wp_ssd_produit';
-$wpdb->insert( $produitTab, array(
+
+        $row = $wpdb->get_row("SELECT * FROM $produitTab WHERE nom = '$produitNom' ");
+        
+      if (is_null($row)) {
+            $wpdb->insert( $produitTab, array(
     
-        'p_nom' => $produitNom,
-        'p_largeur' => $produitLargeur,
-        'p_longeur'=>$produitLongeur,
-        'prix' => $produitPrix
+        'nom' => $produitNom,
+        'reference' => $produitReference,
+        'prix_achat'=>$produitPrixAchat,
+        'prix_vente' => $produitPrixVente
 
     ) );
 
-echo "Produit ".$produitNom." ajouté" ;        
-//$wpbb->print_error();
+        echo "Produit ".$produitNom." ajouté" ;        
+            //$wpbb->print_error();
+
+      }else{
+        echo "le Produit existe deja ";
+      }
 
 
-}else{
 
-    echo "walou";
 }
     die();
 }
@@ -99,20 +108,52 @@ if (isset($_POST["nom"])) {
             echo "client existe deja";
           }      
 
-}else{
-
-    echo "Ca ne marche pas";
 }
     die();
 }
 
+function gethint(){
 
+global $wpdb;
+//        $wpdb->show_errors()
+
+        $clientTab =  'wp_ssd_client';
+        $a =$wpdb->get_results( "SELECT nom FROM wp_ssd_client   ", ARRAY_A);
+echo $a;
+
+$q = $_POST["q"];
+
+$hint = "";
+
+// lookup all hints from array if $q is different from "" 
+if ($q !== "") {
+    $q = strtolower($q);
+    $len=strlen($q);
+    foreach($a as $name) {
+        if (stristr($q, substr($name["nom"], 0, $len))) {
+            if ($hint === "") {
+                $hint = $name["nom"];
+            } else {
+                $hint .= ", $name";
+            }
+        }
+    }
+}
+
+// Output "no suggestion" if no hint was found or output correct values 
+echo $hint === "" ? "Pas de suggestion" : $hint;
+
+
+}
 
 add_action( 'wp_ajax_sendPhpProduit', 'sendPhpProduit' );
 add_action( 'wp_ajax_nopriv_sendPhpProduit', 'sendPhpProduit' );
 
 add_action( 'wp_ajax_sendPhpClient', 'sendPhpClient' );
 add_action( 'wp_ajax_nopriv_sendPhpClient', 'sendPhpClient' );
+
+add_action( 'wp_ajax_gethint', 'gethint' );
+add_action( 'wp_ajax_nopriv_gethint', 'gethint' );
 
 
 

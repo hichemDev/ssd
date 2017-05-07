@@ -41,7 +41,7 @@ function ajoutProd(){
 	}
 	
 	// tr.insertCell(1).appendChild(input);
-document.getElementById('table').appendChild(tr);
+document.getElementById('tableProduit').appendChild(tr);
 
 }
 
@@ -71,8 +71,10 @@ document.getElementById('table').appendChild(tr);
 
 document.getElementById('ajoutclient').onclick= ajoutClient;
 
-function ajoutVente(){
+// ajout proformat
 
+function ajoutProformat(){
+var j=0;
 
 	var tr= document.createElement("tr");
 	var input=document.createElement("input")
@@ -81,17 +83,46 @@ function ajoutVente(){
 
 	// var td2=document.createElement("td")
 
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i <= 5; i++) {
 	tr.insertCell(i).innerHTML='<input type="text" style="padding:5px" placeholder=" ">';
 
 	}
-	
+	tr.insertCell(6).innerHTML='<button id="ajoutligne" ><i  class="fa fa-plus-circle left" style="font-size: 20px" aria-hidden="true"></i></button>'; 
 	// tr.insertCell(1).appendChild(input);
-document.getElementById('tableVente').appendChild(tr);
+document.getElementById('tableProformat').appendChild(tr);
+
+
+document.getElementsByTagName("input")[1].setAttribute('onkeyup','showHint(this.value)');
+
+
+
+
+//ajout ligne proformat
+
+function ajoutligne(){
+	 j=j+6;
+	 //var k=j+1;
+	 //alert("nombre k = "+k);
+	var tr= document.createElement("tr");
+	for (var i = 0; i <= 5; i++) {
+	tr.insertCell(i).innerHTML='<input type="text" style="padding:5px" placeholder=" ">';
+
+	}
+	 //tr.insertCell(j+1);
+	//clientNom.value= document.getElementsByTagName("input")[1];
+	var placeholder=document.getElementsByTagName("input")[1].value;
+	document.getElementById('tableProformat').appendChild(tr);
+	 document.getElementsByTagName("input")[j+1].setAttribute("placeholder",placeholder);
+	 document.getElementsByTagName("input")[j+1].value=placeholder;
+	
+}
+
+document.getElementById('ajoutligne').onclick= ajoutligne;
 
 }
 
-document.getElementById('ajoutVente').onclick= ajoutVente;
+document.getElementById('ajoutProformat').onclick= ajoutProformat;
+
 
 
 //commende

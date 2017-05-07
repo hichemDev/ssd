@@ -4,12 +4,14 @@
 
 
 			var produitNom = document.getElementsByTagName("input")[0].value;
-		var produitLargeur = document.getElementsByTagName("input")[1].value;
-		var produitLongeur = document.getElementsByTagName("input")[2].value;
-		var produitPrix = document.getElementsByTagName("input")[3].value;
+			var produitRef = document.getElementsByTagName("input")[1].value;
+
+		var produitPrixAchat = document.getElementsByTagName("input")[2].value;
+		var produitPrixVente = document.getElementsByTagName("input")[3].value;
+		
 		// Returns successful data submission message when the entered information is stored in database.
-		var dataString = 'nom=' + produitNom + '&largeur=' + produitLargeur + '&longeur=' + produitLongeur + '&prix=' + produitPrix;
-		if (produitNom == '' || produitLargeur == '' || produitLongeur == '' || produitPrix == '') {
+		var dataString = 'nom=' + produitNom + '&prixAchat=' + produitPrixAchat + '&prixVente=' + produitPrixVente ;
+		if (produitNom == '' || produitPrixAchat == '' || produitPrixVente == '' ) {
 		alert("veuillez remplir les champs");
 		} else {
 			
@@ -19,11 +21,11 @@
 type: "POST",
 url: ajaxurl ,
 
-data:{action:"sendPHP",
+data:{action:"sendPhpProduit",
 	nom:produitNom,
-	largeur:produitLargeur,
-	longeur:produitLongeur,
-	prix:produitPrix
+	prixAchat:produitPrixAchat,
+	prixVente:produitPrixVente
+	
 } , 
 cache: false,
 success: function(response) {
