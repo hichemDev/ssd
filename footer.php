@@ -75,6 +75,11 @@ document.getElementById('ajoutclient').onclick= ajoutClient;
 
 function ajoutProformat(){
 var j=0;
+//list pour les hints
+var select=document.createElement("select");
+    //select.multiple=true;
+    select.style.display="none";
+
 
 	var tr= document.createElement("tr");
 	var input=document.createElement("input")
@@ -93,8 +98,9 @@ document.getElementById('tableProformat').appendChild(tr);
 
 
 document.getElementsByTagName("input")[1].setAttribute('onkeyup','showHint(this.value)');
-
-
+var    proformatTab= document.getElementById("tableProformat");
+    var secondeLigne=proformatTab.getElementsByTagName("tr")[2];
+    secondeLigne.getElementsByTagName("td")[1].appendChild(select);
 
 
 //ajout ligne proformat

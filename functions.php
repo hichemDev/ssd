@@ -118,32 +118,35 @@ global $wpdb;
 //        $wpdb->show_errors()
 
         $clientTab =  'wp_ssd_client';
-        $a =$wpdb->get_results( "SELECT nom FROM wp_ssd_client   ", ARRAY_A);
-echo $a;
+        $a =$wpdb->get_results( "SELECT nom,prenom FROM wp_ssd_client   ", ARRAY_A);
+
 
 $q = $_POST["q"];
 
-$hint = "";
-
+$hint = array();
+$i=0;
 // lookup all hints from array if $q is different from "" 
 if ($q !== "") {
     $q = strtolower($q);
     $len=strlen($q);
     foreach($a as $name) {
         if (stristr($q, substr($name["nom"], 0, $len))) {
-            if ($hint === "") {
-                $hint = $name["nom"];
-            } else {
-                $hint .= ", $name";
-            }
+            
+              $sug=$name["nom"]." ".$name["prenom"];
+                $hint[$i] = "$sug";
+            $i++;
         }
     }
 }
-
+if (empty($hint)) {
+  echo "pas de suggestion";
+} else {
+ echo json_encode($hint);
+}
 // Output "no suggestion" if no hint was found or output correct values 
-echo $hint === "" ? "Pas de suggestion" : $hint;
+//echo $hint === "" ? "Pas de suggestion" : json_encode($hint);
 
-
+die();
 }
 
 add_action( 'wp_ajax_sendPhpProduit', 'sendPhpProduit' );
