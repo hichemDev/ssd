@@ -137,7 +137,7 @@ Template Name: Acceuil
         ?> 
        <tr> <th scope="row"><?php echo $resultProduit ["nom"]; ?></th>
       <td><?php echo $resultProduit ["reference"]; ?></td> 
-      <td><?php echo $resultProduit ["prix_chat"]; ?></td> 
+      <td><?php echo $resultProduit ["prix_achat"]; ?></td> 
       <td><?php echo $resultProduit ["prix_vente"]; ?></td> 
        </tr>
         

@@ -31,11 +31,15 @@ function add_js_scripts() {
 	wp_enqueue_script( 'scriptProduit', get_stylesheet_directory_uri().'/js/scriptProduit.js', array('jquery',), '1.1', true );
 	
     wp_enqueue_script( 'scriptClient', get_stylesheet_directory_uri().'/js/scriptClient.js', array('jquery'), '1.0', true );
-     wp_enqueue_script( 'showHint', get_stylesheet_directory_uri().'/js/showhint.js', array('jquery'), '1.0', true );
+     wp_enqueue_script( 'showHintClient', get_stylesheet_directory_uri().'/js/showHintClient.js', array('jquery'), '1.0', true );
+     wp_enqueue_script( 'showHintProduit', get_stylesheet_directory_uri().'/js/showHintProduit.js', array('jquery'), '1.0', true );
+
 	// pass Ajax Url to script.js
 	wp_localize_script('scriptProduit', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
     wp_localize_script('scriptClient', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
-    wp_localize_script('showHint', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+    wp_localize_script('showHintClient', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+    wp_localize_script('showHintProduit', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+
 }
 
 
@@ -112,7 +116,7 @@ if (isset($_POST["nom"])) {
     die();
 }
 
-function gethint(){
+function getHintClient(){
 
 global $wpdb;
 //        $wpdb->show_errors()
@@ -123,22 +127,65 @@ global $wpdb;
 
 $q = $_POST["q"];
 
-$hint = array();
-$i=0;
+$hint = "";
 // lookup all hints from array if $q is different from "" 
 if ($q !== "") {
     $q = strtolower($q);
     $len=strlen($q);
     foreach($a as $name) {
         if (stristr($q, substr($name["nom"], 0, $len))) {
-            
-              $sug=$name["nom"]." ".$name["prenom"];
-                $hint[$i] = "$sug";
-            $i++;
+             if ($hint === "") {
+                $hint = $name["nom"]." ".$name["prenom"];
+            } else {
+              $sug=$name["nom"]." ".$name["prenom"] ; 
+                $hint .= ", $sug";
+            }
         }
     }
 }
-if (empty($hint)) {
+if ($hint==="") {
+  echo "pas de suggestion";
+} else {
+ echo json_encode($hint);
+}
+// Output "no suggestion" if no hint was found or output correct values 
+//echo $hint === "" ? "Pas de suggestion" : json_encode($hint);
+
+die();
+}
+
+
+function getHintProduit(){
+
+global $wpdb;
+//        $wpdb->show_errors()
+$i=0;
+        $clientTab =  'wp_ssd_produit';
+        $a =$wpdb->get_results( "SELECT nom,prix_vente FROM wp_ssd_produit   ", ARRAY_A);
+
+
+$q = $_POST["q"];
+
+$hint = array();
+// lookup all hints from array if $q is different from "" 
+if ($q !== "") {
+    $q = strtolower($q);
+    $len=strlen($q);
+    foreach($a as $name) {
+        if (stristr($q, substr($name["nom"], 0, $len))) {
+
+             
+                $hint[$i]["nom"] = $name["nom"];
+                $hint[$i]["prix_vente"] = $name["prix_vente"];
+                $i++;
+
+            
+              
+            
+        }
+    }
+}
+if ($hint==="") {
   echo "pas de suggestion";
 } else {
  echo json_encode($hint);
@@ -155,9 +202,12 @@ add_action( 'wp_ajax_nopriv_sendPhpProduit', 'sendPhpProduit' );
 add_action( 'wp_ajax_sendPhpClient', 'sendPhpClient' );
 add_action( 'wp_ajax_nopriv_sendPhpClient', 'sendPhpClient' );
 
-add_action( 'wp_ajax_gethint', 'gethint' );
-add_action( 'wp_ajax_nopriv_gethint', 'gethint' );
+add_action( 'wp_ajax_getHintClient', 'getHintClient' );
+add_action( 'wp_ajax_nopriv_getHintClient', 'getHintClient' );
 
+
+add_action( 'wp_ajax_getHintProduit', 'getHintProduit' );
+add_action( 'wp_ajax_nopriv_getHintProduit', 'getHintProduit' );
 
 
 

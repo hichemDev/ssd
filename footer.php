@@ -75,11 +75,14 @@ document.getElementById('ajoutclient').onclick= ajoutClient;
 
 function ajoutProformat(){
 var j=0;
+var  trLigne=2;
 //list pour les hints
-var select=document.createElement("select");
+var selectProduit=document.createElement("select");
     //select.multiple=true;
-    select.style.display="none";
-
+    selectProduit.style.display="none";
+var selectClient=document.createElement("select");
+    //select.multiple=true;
+    selectClient.style.display="none";
 
 	var tr= document.createElement("tr");
 	var input=document.createElement("input")
@@ -96,12 +99,63 @@ var select=document.createElement("select");
 	// tr.insertCell(1).appendChild(input);
 document.getElementById('tableProformat').appendChild(tr);
 
-
-document.getElementsByTagName("input")[1].setAttribute('onkeyup','showHint(this.value)');
-var    proformatTab= document.getElementById("tableProformat");
+document.getElementsByTagName("input")[0].setAttribute('onkeyup','showHintProduit(this.value)');
+document.getElementsByTagName("input")[1].setAttribute('onkeyup','showHintClient(this.value)');
+var proformatTab= document.getElementById("tableProformat");
     var secondeLigne=proformatTab.getElementsByTagName("tr")[2];
-    secondeLigne.getElementsByTagName("td")[1].appendChild(select);
+    secondeLigne.getElementsByTagName("td")[0].appendChild(selectProduit);
 
+    secondeLigne.getElementsByTagName("td")[1].appendChild(selectClient);
+
+    selectProduit.addEventListener("change", myScriptProduit);
+    //selectProduit.addEventListener("click", myScriptProduit);
+
+function myScriptProduit() {
+	// body...
+	//alert ("option choisie "+ select.options[select.selectedIndex].text)
+	 document.getElementsByTagName("input")[j].setAttribute("placeholder",selectProduit.options[selectProduit.selectedIndex].text);
+	 document.getElementsByTagName("input")[j].value= selectProduit.options[selectProduit.selectedIndex].text;
+	 document.getElementsByTagName("input")[j].innerHTML= selectProduit.options[selectProduit.selectedIndex].text;
+	 //secondeLigne.getElementsByTagName("td")[1].value=select.options[select.selectedIndex].text;;
+    selectProduit.style.display="none";
+var indexOption= selectProduit.selectedIndex;
+document.getElementsByTagName("input")[j+5].value=selectProduit.value;
+document.getElementsByTagName("input")[j+5].innerHTML=selectProduit.value;
+selectProduit.options.length= 0;
+selectProduit.remove();
+}
+
+selectClient.addEventListener("change", myScript);
+selectClient.addEventListener("click", myScript);
+
+function myScript() {
+	// body...
+	//alert ("option choisie "+ select.options[select.selectedIndex].text)
+	 document.getElementsByTagName("input")[1].setAttribute("placeholder",selectClient.options[selectClient.selectedIndex].text);
+	 document.getElementsByTagName("input")[1].value= selectClient.options[selectClient.selectedIndex].text;
+	 document.getElementsByTagName("input")[1].innerHTML= selectClient.options[selectClient.selectedIndex].text;
+	 //secondeLigne.getElementsByTagName("td")[1].value=select.options[select.selectedIndex].text;;
+    selectClient.style.display="none";
+selectClient.options.length= 0;
+selectClient.remove();
+
+
+
+}
+var inputLagreur=document.getElementsByTagName("input")[3];
+var inputLongeur=document.getElementsByTagName("input")[4];
+
+inputLongeur.addEventListener("input", calculePrix);
+
+	function calculePrix(){
+	var inputLagreurMesure= inputLagreur.value;
+
+		var prixVente= inputLagreurMesure * inputLongeur.value * selectProduit.value;
+		document.getElementsByTagName("input")[5].innerHTML = prixVente;
+		document.getElementsByTagName("input")[5].value = prixVente;
+
+	}
+ selectProduit.options.length = 0;
 
 //ajout ligne proformat
 
@@ -111,15 +165,34 @@ function ajoutligne(){
 	 //alert("nombre k = "+k);
 	var tr= document.createElement("tr");
 	for (var i = 0; i <= 5; i++) {
-	tr.insertCell(i).innerHTML='<input type="text" style="padding:5px" placeholder=" ">';
+tr.insertCell(i).innerHTML='<input type="text" style="padding:5px" placeholder=" "> </input>';
 
 	}
-	 //tr.insertCell(j+1);
-	//clientNom.value= document.getElementsByTagName("input")[1];
+document.getElementById('tableProformat').appendChild(tr);
+
+	  trLigne++;
+	  var proformatTab= document.getElementById("tableProformat");
+    var LigneTable=proformatTab.getElementsByTagName("tr")[trLigne];
+    var hintProduit= document.createElement("select");
+    LigneTable.getElementsByTagName("td")[0].appendChild(selectProduit);
+    //selectProduit.style.display="block";
+
+	document.getElementsByTagName("input")[j].setAttribute('onkeyup','showHintProduit(this.value)');
+
+
+
+	//selectProduit.style.display="block";
+
 	var placeholder=document.getElementsByTagName("input")[1].value;
 	document.getElementById('tableProformat').appendChild(tr);
 	 document.getElementsByTagName("input")[j+1].setAttribute("placeholder",placeholder);
 	 document.getElementsByTagName("input")[j+1].value=placeholder;
+
+hintProduit.addEventListener("change",emptyScript);
+function emptyScript(){
+
+	hintProduit.options.lenght =0;
+}
 	
 }
 

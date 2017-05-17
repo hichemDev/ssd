@@ -18,37 +18,37 @@ function showHintClient(str) {
 type: "POST",
 url: ajaxurl ,
  
-data:{action:"gethint",
+data:{action:"getHintClient",
 
     q:q
     
 } , 
 dataType: 'json',
 cache: false,
-success: function(response) {
+success: function(responseClient) {
      //init list
-    //selection.removeChild(frag);
-response= response.split(",");
-   // alert(response);
+    //selectionClient.removeChild(frag);
+responseClient= responseClient.split(",");
+   // alert(responseClient);
 //var option=document.createElement("option");
-var selection=document.getElementsByTagName("select")[0];
-selection.style.display="block";
+var selectionClient=document.getElementsByTagName("select")[0];
+selectionClient.style.display="block";
 var frag = document.createDocumentFragment();
 //fragment[k]=frag;
 
-    //selection.removeChild(frag);
-for (var i = 0; i < response.length; i++) {
+    //selectionClient.removeChild(frag);
+for (var i = 0; i < responseClient.length; i++) {
     var option = document.createElement("option");
     frag.appendChild(option);
   option.value= conteur++;
-option.innerHTML=response[i]
+option.innerHTML=responseClient[i]
 }
-selection.appendChild(frag);
+selectionClient.appendChild(frag);
 
-//if (k==0) {selection.appendChild(fragment[k]);} 
+//if (k==0) {selectionClient.appendChild(fragment[k]);} 
 //else {
-//selection.removeChild(fragment[k-1]);
-//selection.appendChild(fragment[k]);
+//selectionClient.removeChild(fragment[k-1]);
+//selectionClient.appendChild(fragment[k]);
 //}
 
  //k++;
